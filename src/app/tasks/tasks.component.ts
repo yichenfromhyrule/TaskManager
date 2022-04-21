@@ -23,14 +23,23 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
   }
 
-  add(name: string):void{
+  add(
+      name: string
+    ):void{
     name = name.trim();
+    const id = this.tasks.length + 1;
+    console.warn("Task Component: current id should be", this.tasks.length + 1);
     if(!name) {return;}
-    this.taskService.addTask({name} as Task).subscribe(
+    this.taskService.addTask({id, name} as Task).subscribe(
       task => {
         this.tasks.push(task);
       }
     )
+  }
+
+  delete(task:Task): void{
+    this.tasks = this.tasks.filter(h => h !== task);
+    this.taskService.deleteTask(task.id).subscribe();
   }
 
 }
