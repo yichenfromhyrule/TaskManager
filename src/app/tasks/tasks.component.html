@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <button type="submit" class="btn btn-primary" (click)="add(newTask.value); newTask.value=''">Submit</button>
+      <button type="submit" class="btn btn-primary" (click)="add( newTask.value); newTask.value=''">Submit</button>
     </div>
     
   </form>
@@ -37,7 +37,7 @@
         </td>
         <td>
           <button type="button" class="btn btn-primary mr-2" routerLink="/detail/{{task.id}}" >View</button>
-          <button type="button" class="btn btn-danger mr-2"  >Delete</button>
+          <button type="button" class="btn btn-danger mr-2"  (click)="delete(task)">Delete</button>
         </td>
   
       </tr>
