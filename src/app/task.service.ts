@@ -16,8 +16,14 @@ export class TaskService {
 
   getTasks(): Observable<Task[]> {
     const tasks = of(TASKS);
-    this.messageService.add('TaskServices: fetched tasks');
+    this.messageService.add(`TaskServices: fetched tasks`);
     return tasks;
+  }
+
+  getTask(id: number): Observable<Task> {
+    const task = TASKS.find(h => h.id === id)!;
+    this.messageService.add(`TaskServices: fetched task id = ${id}`);
+    return of(task);
   }
 
 }

@@ -1,6 +1,3 @@
-<!--Task Details-->
-<app-task-detail [task]="selectedTask"></app-task-detail>
-<!--Task Details Done-->
 
 <!--Task Table-->
 <table class="table table-hover">
@@ -12,7 +9,7 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let task of tasks" (click)="onSelect(task)">
+    <tbody *ngFor="let task of tasks">
       <tr>
         <th scope="row" class="align-middle">
           {{task.id}}
