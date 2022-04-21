@@ -1,0 +1,35 @@
+<!--Task Details-->
+<app-task-detail [task]="selectedTask"></app-task-detail>
+<!--Task Details Done-->
+
+<!--Task Table-->
+<table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Task</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let task of tasks" (click)="onSelect(task)">
+      <tr>
+        <th scope="row" class="align-middle">
+          {{task.id}}
+        </th>
+        <td class="align-middle">
+          {{task.name}}
+        </td>
+        <td class="align-middle text-primary">
+          waiting
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary mr-2" routerLink="/detail/{{task.id}}" >View</button>
+          <button type="button" class="btn btn-danger mr-2"  >Delete</button>
+        </td>
+  
+      </tr>
+  
+</tbody>
+<!--Task Table Done-->
+
