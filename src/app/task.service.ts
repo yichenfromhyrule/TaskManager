@@ -4,13 +4,14 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private taskUrl = "https://crudcrud.com/api/8591b43a73d54c1ebf593494eeb8bd49/tasks";
+  private taskUrl = "https://crudcrud.com/api/9ef4a477e42f4f998f03edb8acfa7455/tasks";
 
 
   //private taskUrl = 'api/tasks';
@@ -19,6 +20,7 @@ export class TaskService {
   };
 
   constructor(
+    private router: ActivatedRoute,
     private messageService: MessageService, 
     private http:HttpClient
   ) { }
@@ -54,12 +56,18 @@ export class TaskService {
   }
 
   addTask(task: Task){
-    return this.http.post<Task>(this.taskUrl, task, this.httpOptions);
+    return this.http.post<Task>(this.taskUrl, task);
   }
 
-  deleteTask(id: number): Observable<Task>{
-    const url = `${this.taskUrl}/?id=${id}`;
-    return this.http.delete<Task>(url, this.httpOptions);
+  updateTask(_id: number, task: Task){
+    const url = `${this.taskUrl}/${_id}`;
+    return this.http.put(url, task);
+  }
+
+  deleteTask(_id: number): Observable<Task>{
+    console.log("TaskService deleteTask(id) working ...");
+    const url = `${this.taskUrl}/${_id}`;
+    return this.http.delete<Task>(url);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

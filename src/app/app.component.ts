@@ -11,11 +11,8 @@ export class AppComponent {
   title = 'Task Manager';
   constructor(private task: TaskService){
     this.task.getTasks().subscribe(data=>{
-      console.warn(data, this.genId)
+      console.warn(data)
     })
   }
 
-  genId(tasks: Task[]) :number{
-    return tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1: 11;
-  }
 }
