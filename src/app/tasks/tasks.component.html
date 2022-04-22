@@ -25,23 +25,45 @@
       </tr>
     </thead>
     <tbody *ngFor="let task of tasks">
-      <tr>
-        <th scope="row" class="align-middle">
-          Task {{task.id}}
-        </th>
-        <td class="align-middle">
-          {{task.name}}
-        </td>
-        <td class="align-middle text-secondary">
-          {{task.status}}
-        </td>
-        <td>
-          <button type="button" class="btn btn-outline-primary mr-2" routerLink="/detail/{{task._id}}" >View</button>
-          <button type="button" class="btn btn-outline-success mr-2"  (click)="complete(task)">Completed</button>
-          <button type="button" class="btn btn-outline-danger mr-2"  (click)="delete(task)">Delete</button>
-        </td>
-  
-      </tr>
+      <ng-container *ngIf="task.status=='done';then first else second"></ng-container>
+          <ng-template #first>
+            <tr class="table-success">
+              <th scope="row" class="align-middle">
+                Task {{task.id}}
+              </th>
+              <td class="align-middle">
+                <s>{{task.name}}</s> 
+              </td>
+              <td class="align-middle text-secondary">
+                {{task.status}}
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary mr-2" routerLink="/detail/{{task._id}}" >View</button>
+                <button type="button" class="btn btn-outline-success mr-2"  (click)="complete(task)" disabled>Completed</button>
+                <button type="button" class="btn btn-outline-danger mr-2"  (click)="delete(task)">Delete</button>
+              </td>
+            </tr>
+          </ng-template> 
+          <ng-template #second>
+            <tr>
+              <th scope="row" class="align-middle">
+                Task {{task.id}}
+              </th>
+              <td class="align-middle">
+                {{task.name}} 
+              </td>
+              <td class="align-middle text-secondary">
+                {{task.status}}
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary mr-2" routerLink="/detail/{{task._id}}" >View</button>
+                <button type="button" class="btn btn-outline-success mr-2"  (click)="complete(task)">Completed</button>
+                <button type="button" class="btn btn-outline-danger mr-2"  (click)="delete(task)">Delete</button>
+              </td>
+            </tr>
+          </ng-template>
+
+      
     </tbody>
 </table>
 
