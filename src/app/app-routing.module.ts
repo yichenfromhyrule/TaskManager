@@ -7,10 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/tasks', pathMatch: 'full'},
   {path: 'dashboard', component:DashboardComponent},
   {path: 'tasks', component:TasksComponent },
-  {path: 'detail/:id', component:TaskDetailComponent}
+  {path: 'detail/:_id', component:TaskDetailComponent}
 ];
 
 @NgModule({

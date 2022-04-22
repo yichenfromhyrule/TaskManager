@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TaskService {
 
-  private taskUrl = "https://crudcrud.com/api/9ef4a477e42f4f998f03edb8acfa7455/tasks";
+  private taskUrl = "https://crudcrud.com/api/f57bd3a115f44711843632818b988fa1/tasks";
 
 
   //private taskUrl = 'api/tasks';
@@ -45,13 +45,12 @@ export class TaskService {
     );
   }
 
-  getTask(id: number): Observable<Task> {
-    console.log("TaskService getTask(id) working ...");
-    const url = `${this.taskUrl}/?id=${id}`;
-    console.log("id: ", id);
+  getTask(_id: String): Observable<Task> {
+    console.log("TaskService getTask(_id) working ..., _id : ", _id);
+    const url = `${this.taskUrl}/${_id}`;
     return this.http.get<Task>(url).pipe(
-      tap(_ => this.log(`fetched task id=${id}`)),
-      catchError(this.handleError<Task>(`getTask id=${id}`))
+      tap(_ => this.log(`fetched task id=${_id}`)),
+      catchError(this.handleError<Task>(`getTask id=${_id}`))
     );
   }
 
@@ -59,12 +58,12 @@ export class TaskService {
     return this.http.post<Task>(this.taskUrl, task);
   }
 
-  updateTask(_id: number, task: Task){
+  updateTask(_id: String, task: Task){
     const url = `${this.taskUrl}/${_id}`;
     return this.http.put(url, task);
   }
 
-  deleteTask(_id: number): Observable<Task>{
+  deleteTask(_id: String): Observable<Task>{
     console.log("TaskService deleteTask(id) working ...");
     const url = `${this.taskUrl}/${_id}`;
     return this.http.delete<Task>(url);

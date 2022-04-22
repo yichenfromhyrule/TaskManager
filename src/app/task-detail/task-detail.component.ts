@@ -24,19 +24,22 @@ export class TaskDetailComponent implements OnInit {
   }
 
   getTask(): void{
-    console.log("getTask() running");
-    const id = Number(this.router.snapshot.paramMap.get('id'));
-    this.taskService.getTask(id).subscribe(task =>this.task = task);
+    console.log("getTask() running ...");
+    const _id = String(this.router.snapshot.paramMap.get('_id'));
+    this.taskService.getTask(_id).subscribe(task =>this.task = task);
   }
 
   goBack(): void{
     this.location.back();
   }
 
-  save() : void{
+  update() : void{
     if(this.task){
-      const _id = Number(this.router.snapshot.paramMap.get('_id'));
-      this.taskService.updateTask(_id,this.task).subscribe(()=>this.goBack());
+      const _id = String(this.router.snapshot.paramMap.get('_id'));
+      const id = this.task.id;
+      const name = this.task.name;
+      const status = this.task.status;
+      this.taskService.updateTask(_id,{id, name, status} as Task).subscribe(()=>this.goBack());
     }
   }
 

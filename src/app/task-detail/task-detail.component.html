@@ -1,15 +1,19 @@
 <div *ngIf="task">
-    <h2>{{task.name | uppercase}} Details </h2>
-    <div>
-        <span>id: </span> {{task.id}}
+
+    <div class = "card my-3">
+        <div class="card-header">
+            Task {{task.id}}-{{task.name}}
+        </div>
+        <div class="card_body p-3">
+            <input type="text" class="form-control my-3" id="task-name" [(ngModel)]="task.name" placeholder="name" />
+            
+            <button class="btn btn-outline-primary mr-3 my-3" (click)="goBack()">go back</button>
+            <button class="btn btn-outline-info" (click)="update()">save</button>
+            
+            
+            
+        </div>
     </div>
 
-    <div>
-        <label for="task-name">Task name: </label>
-        <input id="task-name" [(ngModel)]="task.name" placeholder="name">
-    </div>
-
-    <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
 </div>
 
