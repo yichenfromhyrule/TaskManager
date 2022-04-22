@@ -32,4 +32,12 @@ export class TaskDetailComponent implements OnInit {
   goBack(): void{
     this.location.back();
   }
+
+  save() : void{
+    if(this.task){
+      const _id = Number(this.router.snapshot.paramMap.get('_id'));
+      this.taskService.updateTask(_id,this.task).subscribe(()=>this.goBack());
+    }
+  }
+
 }
