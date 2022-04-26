@@ -30,7 +30,7 @@ export class TasksComponent implements OnInit {
     ):void{
     name = name.trim();
     const id = this.tasks.length + 1;
-    const status = "waiting...";
+    const status = "to do";
     if(!name) {return;}
     this.taskService.addTask({id, name, status} as Task).subscribe(
       task => {
